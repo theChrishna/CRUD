@@ -10,6 +10,10 @@ app.config["SQLALCHEMY_TRACK_MODIFICATION"]=False
 db=SQLAlchemy(app)
 app.app_context().push()
 
+# Create tables if they don't exist
+with app.app_context():
+    db.create_all()
+
 class Employee(db.Model):
     sno=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(200),nullable=False)
