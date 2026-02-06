@@ -22,11 +22,14 @@ class Employee(db.Model):
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        name=request.form['name']
-        email=request.form['email']
-        employee=Employee(name=name,email=email)
-        db.session.add(employee)
-        db.session.commit()
+        name=request.form.get('name', '').strip()
+        email=request.form.get('email', '').strip()
+        
+        # Server-side validation
+        if name and email:
+            employee=Employee(name=name,email=email)
+            db.session.add(employee)
+            db.session.commit()
     allemployee=Employee.query.all()
     return render_template("index.html",allemployee=allemployee)
 
@@ -45,9 +48,14 @@ def delete(sno):
 def update(sno):
     employee=Employee.query.filter_by(sno=sno).first()
     if request.method == 'POST':
-        employee.name=request.form['name']
-        employee.email=request.form['email']
-        db.session.commit()
+        name=request.form.get('name', '').strip()
+        email=request.form.get('email', '').strip()
+        
+        # Server-side validation
+        if name and email:
+            employee.name=name
+            employee.email=email
+            db.session.commit()
         return redirect(url_for('home'))
     return render_template("update.html",employee=employee)
 

@@ -5,19 +5,21 @@
 <div class="container">
   <h1>Update Employee Data</h1>
   <form action="/update/{{employee.sno}}" method="post">
-      <div class="mb-3">
-  <label for="" class="form-label">Full Name</label>
-  <input type="text" class="form-control" name="name" id="" placeholder="Enter Full Name" value="{{employee.name}}">
+    <div class="mb-3">
+      <label for="" class="form-label">Full Name</label>
+      <input type="text" class="form-control" name="name" id="" placeholder="Enter Full Name" value="{{employee.name}}"
+        required>
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" id="" placeholder="Enter Email" value="{{employee.email}}"
+        required>
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="/" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
 </div>
-<div class="mb-3">
-  <label for="" class="form-label">Email</label>
-  <input type="email" class="form-control" name="email" id="" placeholder="Enter Email" value="{{employee.email}}">
-</div>
-<div class="mb-3">
-  <button type="submit" class="btn btn-primary">Update</button>
-  <a href="/" class="btn btn-secondary">Cancel</a>
-</div>
-</form>
-</div>
-    
+
 {% endblock body %}
